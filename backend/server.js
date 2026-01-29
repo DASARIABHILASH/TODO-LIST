@@ -31,13 +31,17 @@ app.get('/',(request,response) =>{
 })
 app.delete('/delete-item/:id', (req, res) => {
     const id = req.params.id;
-    db.query('DELETE FROM todoItems WHERE ID =${ID} ', (error, result) => {
-        if (error) {
-            console.log('Delete error', error);
-            return res.status(500).send('Error deleting item');
-        }
-        res.send('deleted');
-    });
+  db.query(
+  `DELETE FROM todoItems WHERE ID = ${id}`,
+  (error, result) => {
+    if (error) {
+      console.log('Delete error', error);
+      return res.status(500).send('Error deleting item');
+    }
+    res.send('deleted');
+  }
+);
+
 });
 
 

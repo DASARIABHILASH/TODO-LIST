@@ -135,21 +135,21 @@ renderTodos();
        input.value = ''; 
        window.location.reload();
     }
-    
-    function deleteTodo(index) {
-    const id = todos[index].ID; // get ID from the array
-    fetch(`http://localhost:3000/delete-item/${id}`, {
-        method: 'DELETE'
-    })
-    .then(res => res.text())
-    .then(data => {
-        console.log(data); // "deleted"
-        // Remove item from frontend only after successful backend delete
-        todos.splice(index, 1);
-        renderTodos();
-    })
-    .catch(err => console.error(err));
+
+  function deleteTodo(index) {
+  const id = todos[index].ID;
+  fetch(`http://localhost:3000/delete-item/${id}`, {
+    method: 'DELETE'
+  })
+  .then(res => res.text())
+  .then(data => {
+    console.log(data); // deleted
+    todos.splice(index, 1);
+    renderTodos();
+  })
+  .catch(err => console.error(err));
 }
+
 
 
 function editTodo(index) {
