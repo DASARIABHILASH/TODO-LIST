@@ -156,10 +156,9 @@ function editTodo(index) {
     todos[index].editing = true; 
     renderTodos();
 }
-
-    function updateTodo(event, index) {
+ function updateTodo(event, index) {
       todos[index].text = event.target.value;
-    }
+  }
 
     function saveTodo(ID) {
       const input = document.getElementById(`todo-input-${ID}`);

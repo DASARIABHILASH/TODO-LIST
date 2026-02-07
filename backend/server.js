@@ -4,7 +4,7 @@ const mysql=require('mysql2');
 const app=express();
 app.use(cors());
 app.use(express.json());
-
+// database 
 const db=mysql.createConnection({
     host:'localhost',
     user:'root',
@@ -18,6 +18,7 @@ db.connect((error) =>{
     }
     console.log('Mysql is connected')
 })
+// routes and api calls
 app.get('/',(request,response) =>{
     console.log('Default routes')
     db.query(`select * from todoItems`, (error,result) =>{
@@ -29,6 +30,7 @@ app.get('/',(request,response) =>{
        response.send(result)
     })
 })
+// delete api
 app.delete('/delete-item/:id', (req, res) => {
     const id = req.params.id;
   db.query(
@@ -43,8 +45,6 @@ app.delete('/delete-item/:id', (req, res) => {
 );
 
 });
-
-
 app.post('/add-item',(request,response) =>{
     console.log(request.body)
     db.query(`insert into todoItems(itemDescription) values('${request.body.text}')`, (error, result) => {
